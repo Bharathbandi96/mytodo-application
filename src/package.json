@@ -1,0 +1,9 @@
+{
+  "name": "js-muejdv",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "module": "^1.2.5"
+  }
+}

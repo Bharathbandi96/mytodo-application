@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Todo App</title>
+    <link rel="stylesheet" href="./CSS_Files/style.css" />
+  </head>
+
+  <body>
+    <script src="./JS_Files/view.js" type="text/javascript"></script>
+    <script src="./JS_Files/app.js" type="text/javascript"></script>
+    <script src="./JS_Files/dataSource.js" type="text/javascript"></script>
+    <script
+      src="./JS_Files/abstractDataSource.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="./index.js"
+      type="text/javascript"
+    ></script>
+    <!-- <script src="./utilities/polyFills.js" type="text/javascript"></script> -->
+    <div id="app1"></div>
+    <!-- <div id='app2'></div>
+  <div id='app3'></div> -->
+  </body>
+
+  <script type="text/javascript">
+    (function () {
+      function todo(storageKey, rootId) {
+        return new App(new View(rootId), new DataSource(storageKey));
+      }
+
+      todo('newTodo1', '#app1').init();
+
+      // todo('newTodo2', '#app2').init();
+
+      // todo('newTodo3', '#app3').init();
+    })();
+  </script>
+</html>
