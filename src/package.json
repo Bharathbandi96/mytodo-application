@@ -1,9 +1,17 @@
 {
-  "name": "js-muejdv",
+  "name": "todo-application",
   "version": "0.0.0",
   "private": true,
+  "description": "[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/js-muejdv)",
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "main": "index.html",
+  "scripts": {
+    "start": "index.html"
+  },
   "dependencies": {
     "module": "^1.2.5"
-  }
+  },
+  "devDependencies": {}
 }

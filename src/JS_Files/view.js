@@ -65,12 +65,7 @@ View.prototype.renderFooter = function () {
   var footer = this.createAnElement('div', { id: 'footer' });
   this.rootElement.appendChild(footer);
   this.renderItemCountView();
-  this.renderItemsDisplayElement()
-  // this.renderAllTaskButton();
-  // this.renderCompletedTaskButton();
-  // this.renderPendingTaskButton();
-  // this.renderClearCompletedButton();
-  this.renderSelectElement();
+  this.renderFooterButtons();
 }
 
 View.prototype.renderItemCountView = function () {
@@ -126,17 +121,24 @@ View.prototype.renderClearCompletedButton = function () {
   });
 }
 
+View.prototype.renderFooterButtons = function () {
+  var buttonContainer = this.createAnElement('div', { id: 'buttonContainer' });
+  this.appendElementToFooter(buttonContainer);
+  this.renderSelectElement();
+  this.renderItemsDisplayElement();
+}
+
 View.prototype.renderSelectElement = function () {
   var me = this;
   var selectElement = me.createAnElement('select', { id: 'storageDropDown' });
-  this.renderOption(selectElement, 'Select Storage', { value: 'selectStorage' });
-  this.renderOption(selectElement, 'Local Storage', {
+  me.renderOption(selectElement, 'Select Storage', { value: 'selectStorage' });
+  me.renderOption(selectElement, 'Local Storage', {
     value: 'localStorage',
     selected: 'selected'
   });
-  this.renderOption(selectElement, 'Session Storage', { value: 'sessionStorage' });
+  me.renderOption(selectElement, 'Session Storage', { value: 'sessionStorage' });
   // this.renderOption(selectElement, 'Web API', { value: 'webAPI' });
-  me.appendElementToFooter(selectElement);
+  me.rootElement.querySelector('#buttonContainer').appendChild(selectElement);
   var selectEvent = new Event('onStorageChange');
   selectElement.addEventListener('change', function () {
     me.rootElement.dispatchEvent(selectEvent);
@@ -147,11 +149,11 @@ View.prototype.renderItemsDisplayElement = function () {
   var me = this;
   var selectElement = me.createAnElement('select', { id: 'itemsDisplayDropDown' });
 
-  this.renderOption(selectElement, 'All Tasks', { value: 'allTaskButton', selected: 'selected' });
-  this.renderOption(selectElement, 'Completed Tasks', { value: 'completedButton' });
-  this.renderOption(selectElement, 'Pending Tasks', { value: 'pendingButton' });
-  this.renderOption(selectElement, 'Clear Completed Tasks', { value: 'clearCompleted' });
-  me.appendElementToFooter(selectElement);
+  me.renderOption(selectElement, 'All Tasks', { value: 'allTaskButton', selected: 'selected' });
+  me.renderOption(selectElement, 'Completed Tasks', { value: 'completedButton' });
+  me.renderOption(selectElement, 'Pending Tasks', { value: 'pendingButton' });
+  me.renderOption(selectElement, 'Clear Completed Tasks', { value: 'clearCompleted' });
+  me.rootElement.querySelector('#buttonContainer').appendChild(selectElement);
   var selectEvent = new Event('onItemDisplayChange');
   selectElement.addEventListener('change', function () {
     me.rootElement.dispatchEvent(selectEvent);
@@ -286,7 +288,7 @@ View.prototype.getStorageType = function () {
   return this.rootElement.querySelector('#storageDropDown').value;
 }
 
-View.prototype.getItemDisplayType = function() {
+View.prototype.getItemDisplayType = function () {
   return this.rootElement.querySelector('#itemsDisplayDropDown').value;
 }
 //   return new View(rootId);
